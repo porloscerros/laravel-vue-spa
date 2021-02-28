@@ -20,7 +20,6 @@ use App\Http\Controllers\Api\v1\Users\RoleController;
  * Greetings
  */
 Route::get('/', function() {
-
     return [
         'greetings' => 'Welcome to '.config('app.name').' API',
         'authenticate' => url('login'),

@@ -11,7 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
+if (mix.inProduction()) {
+    mix.version()
+}
+
+mix.copyDirectory('resources/assets/img', 'public/img');
+mix.copy('resources/assets/favicon.ico', 'public/favicon.ico');
+
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
-    ]);
+    ]).vue();
