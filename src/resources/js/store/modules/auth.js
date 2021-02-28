@@ -54,8 +54,7 @@ export default {
                 } else if (error.request) {
                     messageData.title = 'sin respuesta del servidor!';
                 }
-                // swal.error(messageData.title, messageData.content);
-                console.log(messageData.title, messageData.content)
+                console.log(messageData.title, messageData.content);
                 dispatch('decrementLoading', null, {root: true});
                 return Promise.reject(new Error(error.response.status));
             }
@@ -75,6 +74,36 @@ export default {
                 commit('SET_USER', null);
                 dispatch('decrementLoading', null, {root: true});
             })
-        }
+        },
+        async forgotPassword ({ dispatch }, credentials) {
+            dispatch('incrementLoading', null, {root: true});
+            try {
+                let response = await axios.post('/forgot-password', credentials);
+                dispatch('decrementLoading', null, {root: true});
+                return response;
+            } catch (error) {
+                dispatch('decrementLoading', null, {root: true});
+                if (error.response && error.response.status === 422) {
+                    return Promise.reject(new Error(error.response.data.errors.email[0]));
+                }
+                console.log(error);
+                return Promise.reject(new Error(error.response.status));
+            }
+        },
+        async resetPassword ({ dispatch }, credentials) {
+            dispatch('incrementLoading', null, {root: true});
+            try {
+                let response = await axios.post('/reset-password', credentials);
+                dispatch('decrementLoading', null, {root: true});
+                return response;
+            } catch (error) {
+                dispatch('decrementLoading', null, {root: true});
+                if (error.response && error.response.status === 422) {
+                    return Promise.reject(new Error(error.response.data.errors));
+                }
+                console.log(error);
+                return Promise.reject(new Error(error.response.status));
+            }
+        },
     }
 }

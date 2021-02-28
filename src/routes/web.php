@@ -15,3 +15,10 @@ use App\Http\Controllers\SpaController;
 */
 
 Route::get('/{any}', [SpaController::class, 'index'])->where('any', '.*');
+
+/*****************
+ * Authentication
+ *****************/
+Route::get('/reset-password/{token}', function ($token) {
+    return view('index');
+})->name('password.reset');

@@ -10,6 +10,14 @@ const routes = [
         },
     },
     {
+        path: '/reset-password/:token',
+        name: 'reset-password-form',
+        component: () => import('../layout/ResetPasswordForm'),
+        meta: {
+            guest: true,
+        }
+    },
+    {
         path: '/',
         component: () => import('../layout/AdminPanel.vue'),
         meta: {

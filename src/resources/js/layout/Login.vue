@@ -4,7 +4,7 @@
 
         <div class="content">
 
-            <form action="#" @submit.prevent="submit">
+            <form autocomplete="off" action="#" @submit.prevent="submit">
                 <div class="imgcontainer">
                     <img src="/img/logo.svg" alt="logo" class="logo">
                 </div>
@@ -23,10 +23,22 @@
                 </div>
 
                 <div class="container" style="background-color:#f1f1f1">
-                    <span class="psw">Forgot <a href="#">password?</a></span>
+                    <span class="psw">Forgot <a @click="showModal" href="#">password?</a></span>
                 </div>
             </form>
         </div>
+
+        <modal v-show="isModalVisible" @close="closeModal">
+            <h3 slot="header">Forgot Password</h3>
+            <div slot="body">
+                <label for="email"><b>Your Email</b></label>
+                <input type="email" v-model="forgotPasswordForm.email" autocomplete="off" autofocus placeholder="Enter Email" id="email" required>
+            </div>
+            <div slot="footer" style="display: flex;">
+                <button @click="closeModal" style="background-color: lightgrey;color: #555">Cancel</button>
+                <button @click="forgotPasswordSubmit" :disabled="submitting">Submit</button>
+            </div>
+        </modal>
 
         <loading-spinner v-if="this.$store.getters.isLoading"></loading-spinner>
 
@@ -39,12 +51,14 @@
     import MainHeader from './MainHeader';
     import MainFooter from './MainFooter';
     import LoadingSpinner from '../components/LoadingSpinner';
+    import Modal from '../components/Modal.vue';
     export default {
         name: "Login",
         components: {
             MainFooter,
             MainHeader,
-            LoadingSpinner
+            LoadingSpinner,
+            Modal
         },
         data() {
             return{
@@ -54,12 +68,17 @@
                     email: '',
                     password: '',
                     remember: false
+                },
+                isModalVisible: false,
+                forgotPasswordForm: {
+                    email: '',
                 }
             }
         },
         methods: {
             ...mapActions({
-                signIn: 'auth/signIn'
+                signIn: 'auth/signIn',
+                forgotPassword: 'auth/forgotPassword'
             }),
             async submit () {
                 this.submitting = true;
@@ -70,6 +89,23 @@
                     console.log(error);
                     this.submitting = false;
                 }
+            },
+            showModal() {
+                this.isModalVisible = true;
+            },
+            closeModal() {
+                this.isModalVisible = false;
+            },
+            async forgotPasswordSubmit () {
+                this.submitting = true;
+                try {
+                    let response = await this.forgotPassword(this.forgotPasswordForm);
+                    this.closeModal();
+                    alert(response.data.message)
+                } catch (error) {
+                    alert(error)
+                }
+                this.submitting = false;
             }
         },
     }
@@ -108,7 +144,7 @@ form {
     margin: auto;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

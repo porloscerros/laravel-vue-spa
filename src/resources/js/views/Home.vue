@@ -4,7 +4,7 @@
             <img src="/img/portada-logo.svg" alt="cover" class="cover">
         </div>
         <div style="text-align: center;">
-            <h1>
+            <h1 v-if="user">
                 Welcome Home {{ user.name }}
             </h1>
         </div>
