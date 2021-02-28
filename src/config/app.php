@@ -230,4 +230,11 @@ return [
 
     ],
 
+
+    /**
+     * Default api version
+     * Requests will redirect to this version if none version has been provided
+     */
+    'current_api_version' => env('API_VERSION', 1),
+
 ];
