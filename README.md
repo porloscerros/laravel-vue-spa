@@ -20,7 +20,7 @@ For local development we have a virtualized stack in Docker (Apache 2.4.38, PHP 
 - [Docker](https://www.docker.com)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-Frontend Dev Dependeces: [Node.js](https://nodejs.org/en/download/) and NPM  
+Frontend Dev Dependencies: [Node.js](https://nodejs.org/en/download/) and NPM  
 
 ### Before starting
 
@@ -76,7 +76,7 @@ $ docker-compose exec --user 1000 php-apache /bin/bash
 ```
 
 
-Install packages required by Laravel via composer:
+Install the packages required by Laravel through the composer:
 
 ```
 $ composer install
@@ -125,7 +125,7 @@ Compile Js:
 $ npm run dev
 ``` 
 
-### Acceder
+### Access
 
 You can now access the application via [http://localhost:8080](http://localhost:8080) on your browser.
 
@@ -144,7 +144,7 @@ We have a container with phpMyAdmin running on:
 #### Logs 
 Laravel generates its own log file in `storage/logs/laravel.log`
 
-To see it in real time by console, open another terminal and run:  
+To see it in real time through the console, open another terminal and run:  
 
 
 ```
