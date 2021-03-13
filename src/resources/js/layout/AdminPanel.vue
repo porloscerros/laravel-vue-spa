@@ -12,6 +12,7 @@
 import MainHeader from './MainHeader';
 import MainFooter from './MainFooter';
 import MainContent from './MainContent';
+import {mapGetters} from "vuex";
 export default {
     name: "AdminPanel",
     components: {
@@ -19,16 +20,24 @@ export default {
         MainHeader,
         MainContent,
     },
+    computed: {
+        ...mapGetters({
+            user: 'auth/user',
+        }),
+        role() {
+            return this.user? this.user.role.keyname: null;
+        }
+    },
     methods: {
         check(e) {
-            console.log(e.target)
-            var target = (e && e.target) || (event && event.srcElement);
+            if (!this.user) return;
+            let target = (e && e.target) || (event && event.srcElement);
 
-            var userMenuDiv = document.getElementById("userMenu");
-            var userMenu = document.getElementById("userButton");
+            let userMenuDiv = document.getElementById("userMenu");
+            let userMenu = document.getElementById("userButton");
 
-            var navMenuDiv = document.getElementById("nav-content");
-            var navMenu = document.getElementById("nav-toggle");
+            let navMenuDiv = document.getElementById("nav-content");
+            let navMenu = document.getElementById("nav-toggle");
             //User Menu
             if (!this.checkParent(target, userMenuDiv)) {
                 // click NOT on the menu

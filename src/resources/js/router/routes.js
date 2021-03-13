@@ -1,33 +1,33 @@
 import users from './routes/users';
 const routes = [
     {
-        title: 'Login',
-        path: '/login',
-        name: 'login',
-        component: () => import('../layout/Login.vue'),
-        meta: {
-            guest: true,
-        },
-    },
-    {
-        path: '/reset-password/:token',
-        name: 'reset-password-form',
-        component: () => import('../layout/ResetPasswordForm'),
-        meta: {
-            guest: true,
-        }
-    },
-    {
         path: '/',
         component: () => import('../layout/AdminPanel.vue'),
-        meta: {
-            requiresAuth: true,
-        },
         children: [
+            {
+                title: 'Login',
+                path: '/login',
+                name: 'login',
+                component: () => import('../views/Login.vue'),
+                meta: {
+                    guest: true,
+                },
+            },
+            {
+                path: '/reset-password/:token',
+                name: 'reset-password-form',
+                component: () => import('../layout/ResetPasswordForm'),
+                meta: {
+                    guest: true,
+                }
+            },
             {
                 path: '/home',
                 component: () => import('../views/Home.vue'),
                 name: 'home',
+                meta: {
+                    requiresAuth: true,
+                },
             },
             users,
         ]

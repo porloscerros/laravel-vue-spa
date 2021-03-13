@@ -2,7 +2,9 @@
     <!--Container-->
     <div class="container w-full mx-auto pt-20">
         <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
-            <router-view></router-view>
+            <div class="flex flex-wrap justify-center">
+                <router-view></router-view>
+            </div>
         </div>
     </div>
     <!--/container-->
@@ -15,8 +17,5 @@ export default {
 </script>
 
 <style scoped>
-.content {
-    background: #555;
-    padding: 2px;
-}
+
 </style>

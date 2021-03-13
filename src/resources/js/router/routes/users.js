@@ -2,6 +2,7 @@ const routes = {
     path: '/users',
     component: () => import('../../layout/MainContent'),
     meta: {
+        requiresAuth: true,
         requiredPermissions: ['admin'],
     },
     children: [
@@ -11,14 +12,14 @@ const routes = {
             component: () => import('../../views/users/List'),
         },
         // {
-        //     path: 'crear',
+        //     path: 'create',
         //     name: 'users.create',
-        //     component: BookingCreate,
+        //     component: () => import('../../views/users/Create'),
         // },
         // {
-        //     path: ':id/editar',
+        //     path: ':id/edit',
         //     name: 'users.edit',
-        //     component: BookingEdit,
+        //     component: () => import('../../views/users/Edit'),
         // },
     ]
 };

@@ -3,7 +3,7 @@
         :disabled="disabled"
         :hidden="hidden"
         :type="type"
-        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        class="inline-flex justify-center py-2 px-4 border border-gray-500 shadow-sm text-sm font-medium rounded-md text-gray-500 hover:bg-grey-300"
         @click="callback($event)"
     >
         <slot></slot>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    name: "PrimaryButton",
+    name: "SecondaryButton",
     props: {
         url: String,
         disabled: {
