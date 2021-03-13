@@ -1,75 +1,81 @@
 <template>
-    <div class="wrapper">
-        <main-header>Laravel Vue SPA</main-header>
-
-        <main-nav></main-nav>
+    <div @click="check" class="bg-black-alt">
+        <main-header></main-header>
 
         <main-content></main-content>
 
-        <main-footer>The footer</main-footer>
+        <main-footer></main-footer>
     </div>
 </template>
 
 <script>
 import MainHeader from './MainHeader';
 import MainFooter from './MainFooter';
-import MainNav from './MainNav';
 import MainContent from './MainContent';
 export default {
     name: "AdminPanel",
     components: {
-        MainNav,
         MainFooter,
         MainHeader,
         MainContent,
+    },
+    methods: {
+        check(e) {
+            console.log(e.target)
+            var target = (e && e.target) || (event && event.srcElement);
+
+            var userMenuDiv = document.getElementById("userMenu");
+            var userMenu = document.getElementById("userButton");
+
+            var navMenuDiv = document.getElementById("nav-content");
+            var navMenu = document.getElementById("nav-toggle");
+            //User Menu
+            if (!this.checkParent(target, userMenuDiv)) {
+                // click NOT on the menu
+                if (this.checkParent(target, userMenu)) {
+                    // click on the link
+                    if (userMenuDiv.classList.contains("invisible")) {
+                        userMenuDiv.classList.remove("invisible");
+                    } else {userMenuDiv.classList.add("invisible");}
+                } else {
+                    // click both outside link and outside menu, hide menu
+                    userMenuDiv.classList.add("invisible");
+                }
+            }
+
+            //Nav Menu
+            if (!this.checkParent(target, navMenuDiv)) {
+                // click NOT on the menu
+                if (this.checkParent(target, navMenu)) {
+                    // click on the link
+                    if (navMenuDiv.classList.contains("hidden")) {
+                        navMenuDiv.classList.remove("hidden");
+                    } else {navMenuDiv.classList.add("hidden");}
+                } else {
+                    // click both outside link and outside menu, hide menu
+                    navMenuDiv.classList.add("hidden");
+                }
+            }
+        },
+        checkParent(t, elm) {
+            while(t.parentNode) {
+                if( t == elm ) {return true;}
+                t = t.parentNode;
+            }
+            return false;
+        }
     }
 }
 </script>
 
 <style scoped>
-.main-head {
-    grid-area: header;
+.bg-black-alt  {
+    background:#191919;
 }
-.content {
-    grid-area: content;
+.text-black-alt  {
+    color:#191919;
 }
-.main-nav {
-    grid-area: nav;
-}
-.main-footer {
-    grid-area: footer;
-}
-
-.wrapper {
-    background: lightgrey;
-    display: grid;
-    grid-gap: 20px;
-    grid-template-areas:
-    "header"
-    "nav"
-    "content"
-    "footer";
-}
-
-@media (min-width: 500px) {
-    .wrapper {
-        grid-template-columns: 1fr 3fr;
-        grid-template-areas:
-      "header  header"
-      "nav     nav"
-      "content content"
-      "footer  footer";
-    }
-}
-
-@media (min-width: 700px) {
-    .wrapper {
-        grid-template-columns: 1fr 4fr 1fr;
-        grid-template-areas:
-      "header header  header"
-      "nav    content content"
-      "nav    content content"
-      "footer footer  footer"
-    }
+.border-black-alt {
+    border-color: #191919;
 }
 </style>

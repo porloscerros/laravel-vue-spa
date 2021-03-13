@@ -18,7 +18,7 @@ if (mix.inProduction()) {
 mix.copyDirectory('resources/assets/img', 'public/img');
 mix.copy('resources/assets/favicon.ico', 'public/favicon.ico');
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/app.js', 'public/js').vue()
     .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]).vue();
+        require("tailwindcss"),
+    ]);

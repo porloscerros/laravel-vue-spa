@@ -1,5 +1,5 @@
 <template>
-    <div class="app">
+    <div class="bg-black-alt font-sans leading-normal tracking-normal">
         <router-view></router-view>
 
         <loading-spinner v-if="this.$store.getters.isLoading"></loading-spinner>

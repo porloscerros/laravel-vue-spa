@@ -10,11 +10,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="shortcut icon" href="{{ asset('img/logo.svg') }}" />
 
-        <!-- Bootstrap core CSS     -->
-
-        <!--  Fonts and icons     -->
-        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
-        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     </head>

@@ -1,27 +1,35 @@
 <template>
-    <div class="list">
-        <div style="overflow-x:auto;">
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="item in users" :key="item.id">
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.username }}</td>
-                    <td>{{ item.email }}</td>
-                    <td>{{ item.role.name }}</td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
+    <div class="w-full p-3">
+        <!--Table Card-->
+        <div class="bg-gray-900 border border-gray-800 rounded shadow">
+            <div class="border-b border-gray-800 p-3">
+                <h5 class="font-bold uppercase text-gray-600">Users</h5>
+            </div>
+            <div class="p-5">
+                <table class="w-full p-5 text-gray-700 table-auto">
+                    <thead>
+                    <tr>
+                        <th class="text-left text-gray-600">Name</th>
+                        <th class="text-left text-gray-600">Username</th>
+                        <th class="text-left text-gray-600">Email</th>
+                        <th class="text-left text-gray-600">Role</th>
+                        <th class="text-left text-gray-600">Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr v-for="item in users" :key="item.id">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.username }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.role.name }}</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <!--/table Card-->
     </div>
 </template>
 
@@ -52,7 +60,7 @@ export default {
         },
         async onDelete(id) {
             await usersApi.delete(id);
-            swal.success();
+            // swal.success();
             return this.fetchTableData();
         },
     },
@@ -60,25 +68,5 @@ export default {
 </script>
 
 <style scoped>
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: lightgrey;
-}
-table, th, td {
-    border: 1px solid black;
-    text-align: center;
-}
-table th {
-    background: #555;
-    color: #f2f2f2;
-}
-table td {
-    /*opacity: 0.8;*/
-}
-th, td {
-    padding: 15px;
-    text-align: center;
-}
-tr:hover {background-color: #f5f5f5;}
+
 </style>

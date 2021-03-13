@@ -1,7 +1,15 @@
 <template>
-    <footer class="main-footer">
-        <div class="made-by">
-            Made with <span style="color: red">&#x2764;</span> by <a href="#">porloscerros</a>
+    <footer class="bg-gray-900 border-t border-gray-400 shadow">
+        <div class="container max-w-md mx-auto flex py-8">
+            <div class="w-full mx-auto flex flex-wrap">
+                <div class="flex w-full">
+                    <div class="px-8">
+                        <h3 class="font-bold font-bold text-gray-100">
+                            Made with <span style="color: red">&#x2764;</span> by <a href="#">porloscerros</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 </template>
@@ -13,19 +21,7 @@ export default {
 </script>
 
 <style scoped>
-.main-footer {
-    background: #555;
-    color: #f2f2f2;
-    padding: 8px;
-}
-.main-footer .made-by{
-    float: right;
-}
-.main-footer .made-by a {
-    text-decoration: none;
-    color: #f3f3f3;
-}
-.main-footer .made-by a:hover {
+a:hover {
     opacity: 0.8;
 }
 </style>
