@@ -77,7 +77,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .bg-black-alt  {
     background:#191919;
 }

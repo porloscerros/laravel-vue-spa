@@ -23,7 +23,7 @@ export default function RedirectIfAuthenticated (router) {
             if(!store.getters['auth/authenticated']){
                 next()
             } else{
-                next({ name: 'dashboard'})
+                next({ name: 'home'})
             }
         } else {
             next()

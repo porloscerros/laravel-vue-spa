@@ -1,11 +1,20 @@
 <template>
-    <div class="w-full md:w-1/2 xl:w-1/3 p-3 justify-center">
+    <div class="w-full">
+        <div class="w-1/2 p-2">
+            <a class="text-gray-100 text-base xl:text-xl no-underline hover:no-underline font-bold"  href="#">
+                <i class="fas fa-moon text-blue-400 pr-3"></i> Laravel Vue SPA
+            </a>
+        </div>
 
+        <div class="w-full flex justify-center">
+        <div class="w-full md:w-1/2 xl:w-1/3 p-3 mt-8 md:my-0">
         <template-card :header="false">
             <form autocomplete="off" action="#" @submit.prevent="submit">
                 <div class="flex justify-center">
                     <img src="/img/logo.svg" class="object-center w-32 h-32" alt="logo">
                 </div>
+
+                <h2 class="text-xl font-bold text-center">Login</h2>
 
                 <div>
                     <text-input
@@ -42,6 +51,8 @@
                 </div>
             </form>
         </template-card>
+        </div>
+        </div>
 
         <card-modal :showing="showForgotPasswordForm" @close="showForgotPasswordForm = false">
             <h2 class="text-xl font-bold text-center">Forgot Password?</h2>
@@ -75,13 +86,13 @@
 
 <script>
 import { mapActions } from 'vuex';
-import TemplateCard from '../components/TemplateCard';
-import TextInput from '../components/TextInput';
-import CheckBox from '../components/CheckBox';
-import PrimaryButton from '../components/PrimaryButton';
-import SecondaryButton from '../components/SecondaryButton';
-import CardModal from '../components/CardModal';
-import LoadingSpinner from '../components/LoadingSpinner';
+import TemplateCard from '../../components/TemplateCard';
+import TextInput from '../../components/TextInput';
+import CheckBox from '../../components/CheckBox';
+import PrimaryButton from '../../components/PrimaryButton';
+import SecondaryButton from '../../components/SecondaryButton';
+import CardModal from '../../components/CardModal';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 export default {
     name: "Login",
@@ -128,7 +139,7 @@ export default {
             this.submitting = true;
             try {
                 let response = await this.forgotPassword(this.forgotPasswordForm);
-                this.closeModal();
+                this.showForgotPasswordForm = false;
                 alert(response.data.message)
             } catch (error) {
                 console.log(error);
