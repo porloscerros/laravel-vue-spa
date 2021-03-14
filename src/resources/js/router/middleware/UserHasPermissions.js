@@ -30,7 +30,7 @@ export default function UserHasPermissions (router) {
                             if(canGoNext) {
                                 next();
                             } else {
-                                next({ name: 'dashboard'});
+                                next({ name: 'home'});
                             }
                         }
                     });
